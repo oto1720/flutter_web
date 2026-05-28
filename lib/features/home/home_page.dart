@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../../shared/widgets/fade_in_on_scroll.dart';
+import '../../shared/widgets/footer.dart';
 import '../../shared/widgets/nav_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,9 +17,12 @@ class HomePage extends StatelessWidget {
           return SingleChildScrollView(
             child: Column(
               children: [
-                _HeroSection(isDesktop: isDesktop),
-                _SkillsSection(isDesktop: isDesktop),
-                const _Footer(),
+                FadeInOnScroll(child: _HeroSection(isDesktop: isDesktop)),
+                FadeInOnScroll(
+                  delay: const Duration(milliseconds: 200),
+                  child: _SkillsSection(isDesktop: isDesktop),
+                ),
+                const Footer(),
               ],
             ),
           );
@@ -61,9 +67,11 @@ class _HeroSection extends StatelessWidget {
         ),
         const SizedBox(height: 32),
         FilledButton.icon(
-          onPressed: () {},
+          onPressed: () {
+            context.go('/work');
+          },
           icon: const Icon(Icons.download_rounded),
-          label: const Text('Resume を見る'),
+          label: const Text('workを見る'),
           style: FilledButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           ),
@@ -219,25 +227,3 @@ class _SkillCard extends StatelessWidget {
   }
 }
 
-// ── Footer ────────────────────────────────────────────────────────────────────
-
-class _Footer extends StatelessWidget {
-  const _Footer();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 32),
-      color: theme.colorScheme.surfaceContainerHighest,
-      child: Text(
-        '© 2026 My Portfolio. Built with Flutter.',
-        textAlign: TextAlign.center,
-        style: theme.textTheme.bodySmall?.copyWith(
-          color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
-        ),
-      ),
-    );
-  }
-}

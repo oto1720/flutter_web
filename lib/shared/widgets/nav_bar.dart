@@ -18,13 +18,22 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
         child: Text(
           'Portfolio',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.primary,
-              ),
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
       ),
-      actions: const [
-        SizedBox(width: 16),
+      actions: [
+        TextButton(onPressed: () => context.go('/'), child: const Text('Home')),
+        TextButton(
+          onPressed: () => context.go('/about'),
+          child: const Text('About'),
+        ),
+        TextButton(
+          onPressed: () => context.go('/work'),
+          child: const Text('Work'),
+        ),
+        const SizedBox(width: 16),
       ],
     );
   }
