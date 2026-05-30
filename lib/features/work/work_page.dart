@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../shared/utils/breakpoints.dart';
 import '../../shared/widgets/fade_in_on_scroll.dart';
 import '../../shared/widgets/footer.dart';
 import '../../shared/widgets/nav_bar.dart';
@@ -12,7 +13,7 @@ class WorkPage extends StatelessWidget {
       appBar: const NavBar(),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          final isDesktop = constraints.maxWidth >= 900;
+          final isDesktop = constraints.isDesktop;
           return SingleChildScrollView(
             child: Column(
               children: [

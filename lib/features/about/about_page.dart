@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../shared/utils/breakpoints.dart';
 import '../../shared/widgets/fade_in_on_scroll.dart';
 import '../../shared/widgets/footer.dart';
 import '../../shared/widgets/nav_bar.dart';
@@ -12,13 +13,11 @@ class AboutPage extends StatelessWidget {
       appBar: const NavBar(),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          final isDesktop = constraints.maxWidth >= 900;
+          final isDesktop = constraints.isDesktop;
           return SingleChildScrollView(
             child: Column(
               children: [
-                FadeInOnScroll(
-                  child: _AboutSection(isDesktop: isDesktop),
-                ),
+                FadeInOnScroll(child: _AboutSection(isDesktop: isDesktop)),
                 FadeInOnScroll(
                   delay: const Duration(milliseconds: 200),
                   child: _ExperienceSection(isDesktop: isDesktop),
@@ -76,9 +75,13 @@ class _ExperienceSection extends StatelessWidget {
   final bool isDesktop;
 
   static const _experiences = [
-    (title: 'Flutter アプリ開発', period: '2023 - 現在', desc: 'モバイル・Web アプリの設計と実装'),
-    (title: 'Firebase 構築', period: '2023 - 現在', desc: 'バックエンド・インフラの設計と運用'),
-    (title: 'UI/UX デザイン', period: '2022 - 現在', desc: 'Material Design に基づく UI 設計'),
+    (title: 'Flutter アプリ開発', period: '2026 - 現在', desc: 'モバイル・Web アプリの設計と実装'),
+    (title: 'Firebase 構築', period: '2026 - 現在', desc: 'バックエンド・インフラの設計と運用'),
+    (
+      title: 'UI/UX デザイン',
+      period: '2026 - 現在',
+      desc: 'Material Design に基づく UI 設計',
+    ),
   ];
 
   @override
@@ -137,4 +140,3 @@ class _ExperienceSection extends StatelessWidget {
     );
   }
 }
-
